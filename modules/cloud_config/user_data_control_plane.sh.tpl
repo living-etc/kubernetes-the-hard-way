@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set -exuo pipefail
+set -euo pipefail
 
 function configure_system {
   apt-get update
@@ -36,7 +36,7 @@ function finish_lifecycle_action {
 
   aws autoscaling --region eu-west-1 complete-lifecycle-action \
     --lifecycle-hook-name ${lifecycle_hook_name} \
-    --auto-scaling-group-name ${autoscaling_group_name} \
+    --auto-scaling-group-name ${auto_scaling_group_name} \
     --lifecycle-action-result $${LIFECYCLE_ACTION_RESULT} \
     --instance-id $${INSTANCE_ID}
 }
